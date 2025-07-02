@@ -1,32 +1,21 @@
-/*  DisplayAlbum.jsx  ────────────────────────────────────────────────
-    Visualizza la pagina di un album:
-
-    1.  Legge l’ID dalla URL (React-Router) e recupera i dati dell’album.
-    2.  Mostra copertina, titolo, descrizione e info varie.
-    3.  Stampa una tabella-griglia (4 colonne) con elenco tracce:
-        ┌───┬───────────────────────┬──────────────┬───────────────┐
-        │ # │  Cover + Titolo       │  Album       │  Date added   │
-        └───┴───────────────────────┴──────────────┴───────────────┘
-        • Colonne 3-4 nascoste su mobile.
-        • Titoli lunghi troncati con ellipsis.
-        • Righe evidenziate on-hover.
--------------------------------------------------------------------- */
+/* DisplayAlbum.jsx ─ lista album & tracce “style Spotify” */
 
 import { albumsData, songsData, assets } from "../assets/assets";
-import NavBar                from "./NavBar";
-import { useParams }         from "react-router-dom";
+import NavBar            from "./NavBar";
+import { useParams }     from "react-router-dom";
+import { formatDuration, timeAgo } from "../utils";
 
 const DisplayAlbum = () => {
-  /* ── 1. Routing & dati album ─────────────────────────────────── */
-  const { id }   = useParams();          // /album/:id
-  const albumData = albumsData[id];      // oggetto album
+  /* 1. routing e dati album */
+  const { id }    = useParams();              // /album/:id
+  const albumData = albumsData[id];           // oggetto album
 
-  /* ── 2. UI ────────────────────────────────────────────────────── */
+  /* 2. render UI */
   return (
     <>
       <NavBar />
 
-      {/* Header grande con copertina + descrizione */}
+      {/* ───────────────────────── Header album ───────────────────────── */}
       <div className="mt-10 flex gap-8 flex-col md:flex-row md:items-end">
         <img className="w-48 rounded" src={albumData.image} alt="" />
 
@@ -44,46 +33,52 @@ const DisplayAlbum = () => {
               alt=""
             />
             <b>Ashavafy</b> • 6,666,616 likes
-            <b> • 10 songs, </b>
+            <b> • {songsData.length} songs, </b>
             about 2&nbsp;hr&nbsp;30&nbsp;min
           </p>
         </div>
       </div>
 
-      {/* ───── Header colonne della tabella ───── */}
+      {/* ───────────────────────── Header colonne ──────────────────────── */}
       <div
-        className="grid grid-cols-[40px_1fr_180px_120px]
+        className="grid grid-cols-[40px_1fr_180px_120px_60px]
                    gap-4 px-2 pb-2 text-sm text-[#a7a7a7]
                    border-b border-[#232323]"
       >
         <p className="text-right">#</p>
         <p>Title</p>
         <p className="hidden sm:block">Album</p>
-        <p className="hidden sm:block whitespace-nowrap">Date Added</p>
+        <p className="hidden md:block whitespace-nowrap">Date Added</p>
+        <img src={assets.clock_icon} className="m-auto w-4" alt="length" />
       </div>
 
-      {/* ───── Lista tracce ───── */}
-      {songsData.map((item, index) => (
+      {/* ───────────────────────── Lista tracce ───────────────────────── */}
+      {songsData.map((song, i) => (
         <div
-          key={item.id ?? index} /* usa id se c'è, altrimenti index */
-          className="grid grid-cols-[40px_1fr_180px_120px]
+          key={song.id ?? i}                     /* key univoca */
+          className="grid grid-cols-[40px_1fr_180px_120px_60px]
                      items-center gap-4 px-2 py-2
-                     text-[#a7a7a7] hover:bg-[#ffffff1a] cursor-pointer"
+                     text-amber-300 hover:bg-[#ffffff1a] cursor-pointer"
         >
-          {/* numero progressivo */}
-          <span className="text-right">{index + 1}</span>
+          {/* n° progressivo */}
+          <span className="text-right">{i + 1}</span>
 
           {/* titolo: copertina + testo */}
           <div className="flex items-center gap-5 overflow-hidden">
-            <img className="w-10 flex-none rounded" src={item.image} alt="" />
-            <p className="truncate text-amber-50">{item.name}</p>
+            <img className="w-10 flex-none rounded" src={song.image} alt="" />
+            <p className="truncate text-amber-50">{song.name}</p>
           </div>
 
           {/* album */}
-          <p className="hidden sm:block truncate">{item.album}</p>
+          <p className="hidden sm:block truncate">{song.album}</p>
 
           {/* data aggiunta */}
-          <p className="hidden sm:block whitespace-nowrap">{item.date}</p>
+          <p className="hidden md:block whitespace-nowrap">
+            {timeAgo(song.date)}
+          </p>
+
+          {/* durata */}
+          <p className="text-right">{song.duration}</p>
         </div>
       ))}
     </>
