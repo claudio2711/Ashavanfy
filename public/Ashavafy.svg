@@ -1,0 +1,26 @@
+<svg width="50" height="50" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logo Ashavafy">
+  <defs>
+    <!-- vortice interno -->
+    <radialGradient id="swirl" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#000"></stop>
+      <stop offset="55%" stop-color="#00271F"></stop>
+      <stop offset="75%" stop-color="#004833"></stop>
+      <stop offset="100%" stop-color="#005942"></stop>
+    </radialGradient>
+
+    <!-- riflesso ambrato sul bordo destro -->
+    <linearGradient id="rimGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="70%" stop-color="transparent"></stop>
+      <stop offset="85%" stop-color="#ffc400" stop-opacity="0.9"></stop>
+      <stop offset="100%" stop-color="#ffc400" stop-opacity="0"></stop>
+    </linearGradient>
+  </defs>
+
+  <!-- cerchio principale -->
+  <circle cx="50" cy="50" r="45" fill="url(#swirl)"></circle>
+  <!-- bagliore -->
+  <circle cx="50" cy="50" r="45" fill="url(#rimGlow)"></circle>
+
+  <!-- lettera A -->
+  <text x="50%" y="55%" text-anchor="middle" dominant-baseline="middle" font-family="Montserrat, sans-serif" font-size="52" font-weight="700" fill="#00a06e">A</text>
+</svg>
