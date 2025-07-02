@@ -16,7 +16,7 @@ const bgColor = albumsData[Number(albumId)].bgColor
 
 useEffect(()=>{
   if(isAlbum) displayRef.current.style.background = `linear-gradient(${bgColor}, #121212)`
-  else displayRef.current.style.background = `#122412`
+  else displayRef.current.style.background = 'linear-gradient(to bottom, #000000 0%, #013325 100%)';
   
 })
 

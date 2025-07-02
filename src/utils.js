@@ -13,9 +13,11 @@ export const timeAgo = iso => {
   return d <= 1 ? "1 day ago" : `${d} days ago`;
 };
 
-export const fmt = secs => {
-  const m = Math.floor(secs / 60);
-  const s = String(Math.floor(secs % 60)).padStart(2, "0");
-  return `${m}:${s}`;           // 0:05   4:04
-};
+export function formatTime(sec) {
+  if (isNaN(sec)) return '0:00';
 
+  const mins = Math.floor(sec / 60);
+  const secs = Math.floor(sec % 60);
+
+  return `${mins}:${secs.toString().padStart(2, '0')}`;
+}

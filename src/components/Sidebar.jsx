@@ -7,8 +7,8 @@ const Sidebar = () => {
       {/* ─── blocco Home / Search ───────────────────────────────────── */}
       <div
         className="h-[15%] rounded flex flex-col justify-around
-                   bg-gradient-to-r
-                   from-[#00140f] via-[#013325] to-[#e4c41122]">
+                   bg-gradient-to-b
+                   from-[#00000] via-[#10092f] to-[#1a0641]">
         <div className="flex items-center gap-3 pl-8 cursor-pointer">
           <img className="w-6" src={assets.home_icon}   alt="" />
           <p className="font-bold">Home</p>
@@ -24,7 +24,7 @@ const Sidebar = () => {
       <div
         className="h-[85%] rounded overflow-y-auto scrollbar-hide
                    bg-gradient-to-b
-                   from-[#00140f] via-[#01281e] to-[#013325]">
+                   from-[#1a0641] via-[#5742ad] to-[#b9ca1d]">
         {/* header libreria */}
         <div className="p-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -41,7 +41,7 @@ const Sidebar = () => {
         <div
           className="p-4 m-2 rounded font-semibold flex flex-col gap-1
                      bg-gradient-to-br
-                     from-[#013325] via-[#014a39] to-[#e4c41133]">
+                     from-[#a50f0f] via-[#9a4231] to-[#e7df0bb5]">
           <h1>Create your first playlist</h1>
           <p className="font-light">It's easy, we will help you</p>
           <button
@@ -54,8 +54,8 @@ const Sidebar = () => {
         {/* card 2 */}
         <div
           className="p-4 m-2 rounded mt-4 font-semibold flex flex-col gap-1
-                     bg-gradient-to-br
-                     from-[#013325] via-[#014a39] to-[#e4c41133]">
+                     bg-gradient-to-bl
+                     from-[#030360] via-[#1f258e] to-[#e7df0bb5]">
           <h1>Something immense</h1>
           <p className="font-light">over the horizon</p>
           <button
