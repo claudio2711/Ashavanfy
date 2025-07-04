@@ -1,14 +1,19 @@
+/* eslint-disable no-unused-vars */
 /* DisplayAlbum.jsx ─ lista album & tracce “style Spotify” */
 
 import { albumsData, songsData, assets } from "../assets/assets";
 import NavBar            from "./NavBar";
 import { useParams }     from "react-router-dom";
 import { formatDuration, timeAgo } from "../utils";
+import { useContext } from "react";
+import { PlayerContext } from "../context/PlayerContext";
 
 const DisplayAlbum = () => {
+  
   /* 1. routing e dati album */
   const { id }    = useParams();              // /album/:id
   const albumData = albumsData[id];           // oggetto album
+  const {playWithId} = useContext(PlayerContext)
 
   /* 2. render UI */
   return (
@@ -32,7 +37,7 @@ const DisplayAlbum = () => {
               src={assets.Ashavanfy_logo}
               alt=""
             />
-            <b>Ashavafy</b> • 6,666,616 likes
+            <b>Ashavafy</b> • 1,234,567 likes
             <b> • {songsData.length} songs, </b>
             about 2&nbsp;hr&nbsp;30&nbsp;min
           </p>
@@ -54,7 +59,7 @@ const DisplayAlbum = () => {
 
       {/* ───────────────────────── Lista tracce ───────────────────────── */}
       {songsData.map((song, i) => (
-        <div
+        <div onClick={() => {playWithId(i)}}
           key={song.id ?? i}                     /* key univoca */
           className="grid grid-cols-[40px_1fr_180px_120px_60px]
                      items-center gap-4 px-2 py-2
